@@ -24,7 +24,7 @@ node {
         //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
     stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarScanner 4.7';
+    def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv() {
       sh "${scannerHome}/bin/sonar-scanner"
     }
