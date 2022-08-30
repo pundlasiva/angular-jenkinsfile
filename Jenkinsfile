@@ -23,6 +23,12 @@ node {
         //env.git_commit_id_short = env.git_commit_id.take(7)
         //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
+    stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner';
+    withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
 
     stage('NPM Install') {
         withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
